@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(41, 41, 41);
+}
+
+.headerView{
+    height: 150px;
+    width: 100%;
+    background-color: rgb(63, 53, 199);
+}
+
+.heading-text{
+    background-color: rgb(63, 53, 199);
+    font-size: 40px;
+    text-shadow: -4px 4px rgba(255, 255, 255, 0.3);
+    padding-top: 2.3%;
+}
+
+.fist-section{
+    border: 8px solid rgb(63, 53, 199);
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+
+.process-design{
+    width: 45px;
+    height: 45px;
+}
