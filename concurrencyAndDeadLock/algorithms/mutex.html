@@ -62,9 +62,9 @@
                     <button type="reset"  class="btn btn-primary btn-danger" value="Reset" onclick="myJsFunctionReset()">Reset</button>
                 </div>
             </div>
-    <div class="div1" id="entry">Start State:</div>
-    <div class="div2" id="lk">Lock State:</div>
-    <div class="div3" id="end">End State:</div>
+    <div class="div1" id="entry">Start State: </div>
+    <div class="div2" id="lk">Lock State: </div>
+    <div class="div3" id="end">End State: </div>
     <div class="div4" id="queue">Queue State: </div>
     <p id="demo1"></p>
     <p id="demo2"></p>
@@ -173,13 +173,13 @@
             await mutex.lock(event);
             startTxt.textContent += which_process
             setTimeout(() => {
-                startTxt.textContent = 'Start State:';
+                startTxt.textContent = 'Start State: ';
             }, 2000);
             setTimeout(() => {
                 let cricTxt = document.querySelector('#lk')
                 cricTxt.textContent += which_process;
                 setTimeout(() => {
-                    cricTxt.textContent = 'Lock State:';
+                    cricTxt.textContent = 'Lock State: ';
                 },2000);
             },2000);
             
