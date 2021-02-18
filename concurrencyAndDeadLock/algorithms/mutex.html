@@ -3,113 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../algorithms/css/style.css">
     <title>Mutex</title>
-    <style>
-        body {
-            margin: 0 0;
-            padding: 0 0 0 0;
-        }
-        
-        .navbar {
-            background-color: midnightblue;
-            padding: 1px;
-        }
-        
-        .navbar ul li {
-            position: relative;
-            display: inline-block;
-            margin-right: 20px;
-            margin-top: 20px;
-        }
-        
-        .navbar ul li a {
-            position: relative;
-            font-family: 'Roboto', sans-serif;
-            color: whitesmoke;
-            text-decoration: none;
-            font-size: large;
-            font-style: bold;
-        }
-        
-        .navbar ul li a:hover {
-            color: blue;
-        }
-        
-        .items input {
-            margin-top: 20px;
-            margin-left: 600px;
-            padding: 20px;
-            width: 190px;
-        }
-        
-        .items button {
-            padding: 8px;
-            width: 80px;
-        }
-        
-        .div1 {
-            background-color: rgb(220,220,220);
-            position: relative;
-            width: 540px;
-            border-radius: 10px;
-            border: 5px solid black;
-            padding: 30px;
-            margin-left: 100px;
-            margin-top: 40px;
-            font-size: 25px;
-        }
-        
-        .div2 
-        {
-            background-color: rgb(220,220,220);
-            width: 540px;
-            position: relative;
-            border-radius: 10px; 
-            border: 5px solid black;
-            padding: 30px;
-            margin-left: 100px;
-            margin-top: 40px;
-            font-size: 25px;
-        }
-        
-        .div3 
-        {
-            background-color: rgb(220,220,220);
-            position: relative;
-            width: 540px;
-            border-radius: 10px; 
-            border: 5px solid black;
-            padding: 30px;
-            margin-left: 100px;
-            margin-top: 40px;
-            font-size: 25px;
-        }
-        
-        .div4 
-        { 
-            background-color: rgb(220,220,220);
-            position: relative;
-            width: 500px;
-            border-radius: 10px;
-            border: 5px solid black;
-            padding: 30px;
-            margin-left: 680px;
-            margin-top: 20px;
-            bottom: 320px;
-            font-size: 25px;
-        }
-
-        
-        .processbtn 
-        {
-            left: 200px;
-            bottom: 100px;
-            background-color: rgb(30,144,255);
-            color: whitesmoke;
-            position: relative;
-            width: 150px;
-        }
-    </style>
 </head>
 
 <body>
@@ -122,21 +17,24 @@
     </head>
     
     <body>
+        <header class="headerView text-center">
+            <p class="text-light heading-text">Mutex Algorithm</p>
+        </header>
         <br>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="display-3">MUTEX</h1>
-                <p class="lead">Mutual - Exclusion</p>
-                <hr class="my-4">
-                <!--INSERT MUTEX DESCRIPTION HERE in p tag-->
-                <p></p>
-            </div>
             <div class="items">
-                <div class="jumbotron">
+                <div class="jumbotron" style="border-radius:30px;">
                     <form name="Need">
-                        <div class="form-group" style="margin-left:100px;float:left;">
-                            <label>Enter the number of Processes:</label> <input id = 'input1' class="form-control" type="Number" onkeyup="BuildFormFields2(y = parseInt(this.value, 10));" />
-                            <div id="FormFields1"></div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label>Number of processes:</label> 
+                                </div>
+                                <div class="col-3">
+                                    <input id = 'input1' class="form-control" style="margin:0px;" type="Number" onkeyup="BuildFormFields2(y = parseInt(this.value, 10));" />
+                                    <div id="FormFields1"></div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     <form name="Alloc">
@@ -164,9 +62,6 @@
                     <button type="reset"  class="btn btn-primary btn-danger" value="Reset" onclick="myJsFunctionReset()">Reset</button>
                 </div>
             </div>
-    <!-- <input type="text" id="input1" placeholder="Enter the num of processes" aria-hidden="false" />
-    <button id="btn">Submit</button>
-    <button type="reset" value="Reset" onclick="myJsFunctionReset()">Reset</button> -->
     <div class="div1" id="entry">Start State:</div>
     <div class="div2" id="lk">Lock State:</div>
     <div class="div3" id="end">End State:</div>
