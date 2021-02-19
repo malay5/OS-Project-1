@@ -18,16 +18,19 @@
     <section>
         <div class="container-fluid pt-3">
             <div class="d-flex justify-content-center">
-                <form class="row row-cols-lg-auto g-3" onsubmit="event.preventDefault();startProcessVisualization(event);return false" id="formForCountingSemaphare">
+                <form class="row row-cols-lg-auto g-3"
+                    onsubmit="event.preventDefault();startProcessVisualization(false);return false"
+                    id="formForCountingSemaphare">
                     <div class="col-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Semaphore" id="semaphore" name="semaphoreValue" required>
+                            <input type="text" class="form-control" placeholder="Semaphore" id="semaphore"
+                                name="semaphoreValue" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Process Count" id="proceessCount" name="proceessCountValue"
-                                required>
+                            <input type="text" class="form-control" placeholder="Process Count" id="proceessCount"
+                                name="proceessCountValue" required>
                         </div>
                     </div>
                     <div class="col-12">
@@ -61,13 +64,13 @@
                 <div class="col-sm-3 d-flex justify-content-between text-center" style="flex-direction: column;">
                     <div class="mx-auto">
                         <p class="text-light mt-3 mb-0">ENTRY CODE</p>
-                        <div class="fist-section">
+                        <div class="fist-section" id="entrySection">
 
                         </div>
                     </div>
                     <div class="mx-auto">
                         <p class="text-light mt-3 mb-0">BLOCKED STATE</p>
-                        <div class="fist-section">
+                        <div class="fist-section" id="blockedSection">
 
                         </div>
                     </div>
@@ -75,18 +78,18 @@
                 <div class="col-sm-3 d-flex justify-content-between text-center" style="flex-direction: column;">
                     <div class="mx-auto">
                         <p class="text-light mt-3 mb-0">CRITICAL STATE</p>
+                        <div class="fist-section" id="criticalSection">
+
+                        </div>
+                    </div>
+                    <div class="mx-auto">
+                        <p class="text-light mt-3 mb-0" id="exitSection">EXIT CODE</p>
                         <div class="fist-section">
 
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <p class="text-light mt-3 mb-0">EXIT CODE</p>
-                        <div class="fist-section">
-
-                        </div>
-                    </div>
-                    <div class="mx-auto">
-                        <p class="text-light mt-3 mb-0">COMPLETED</p>
+                        <p class="text-light mt-3 mb-0" id="completeSection">COMPLETED</p>
                         <div class="fist-section">
 
                         </div>
@@ -97,24 +100,56 @@
                         <h2 class="text-light">
                             Semaphore :- <span id="semaphoreCount"></span>
                         </h2>
+
+                        <div class="console-design text-light">
+                            <div class="console-navbar">
+                                <div class="console-title">
+                                    <div class="mx-2 text-light">Hey, Log is here!</div>
+                                </div>
+                                <div class="console-button">
+                                    <span class="minimize bg-warning my-auto mx-2"></span>
+                                    <span class="restore bg-success my-auto mx-2"></span>
+                                    <span class="close bg-danger my-auto mx-2"></span>
+                                </div>
+                            </div>
+                            <div class="m-2"
+                                style="background-color: black;height: 650px-60px;overflow-y: scroll;max-height: 590px;" id="mainLogDiv">
+                                <span class="console-log-text" id="logText"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+        integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+        crossorigin="anonymous"></script>
     <script>
-        var semaphore, processCount, formData;
-        function startProcessVisualization(e) {
-            
+        let semaphore = 0, processCount, logText, formData, entrySection, blockedSection, criticalSection, exitSection, completeSection, semaphoreCount, logTextString = null;
+        let p1, blockedMethods = [], criticalMethods = []
 
+
+        function startProcessVisualization(isCheck) {
+            criticalMethods = []
+            blockedMethods = []
             formData = new FormData(formForCountingSemaphare);
-            semaphore =formData.get("semaphoreValue");
-            processCount =formData.get("proceessCountValue");
+            semaphore = formData.get("semaphoreValue");
+            processCount = formData.get("proceessCountValue");
 
-            var element = document.getElementById("processState")
+            let element = document.getElementById("processState")
             element.innerHTML = "";
-            var semaphoreCount = document.getElementById("semaphoreCount");
+            semaphoreCount = document.getElementById("semaphoreCount");
             semaphoreCount.innerHTML = semaphore
+
+            logText = document.getElementById("logText")
+            logTextString = "log@contingSemaphore:~$"
+
+            window.setInterval(function () {
+                var elem = document.getElementById("mainLogDiv");
+                elem.scrollTop = elem.scrollHeight;
+            }, 2000);
+
             for (let i = 0; i < processCount; i++) {
                 var process = document.createElement("span")
                 process.className = "process-design rounded-circle col-4 px-1"
@@ -127,10 +162,265 @@
                 processInner.appendChild(processName)
 
                 process.appendChild(processInner)
-                process.id = "process" + i
+                process.id = "process" + (i + 1)
                 element.appendChild(process)
             }
+
+            logTextString += " All processes are created<br>"
+            logText.innerHTML = logTextString
+
+            entrySection = document.getElementById("entrySection")
+            blockedSection = document.getElementById("blockedSection")
+            criticalSection = document.getElementById("criticalSection")
+            completeSection = document.getElementById("completeSection")
+            exitSection = document.getElementById("exitSection")
+            for (let i = 0; i < processCount; i++) {
+                let p
+                if (i == 0) {
+                    p1 = document.getElementById("process" + (i + 1));
+                    anime({
+                        targets: p1,
+                        translateY: () => {
+                            return -(p1.offsetTop - entrySection.offsetTop - 10) + 'px'
+                        },
+                        translateX: () => {
+                            return (entrySection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                        },
+                        duration: 5000,
+                        complete: (ani) => {
+                            semaphore -= 1
+                            semaphoreCount.innerHTML = semaphore;
+
+                            logTextString += "log@contingSemaphore:~$ Process 1 executed entry code<br>"
+                            logText.innerHTML = logTextString
+                            if (semaphore < 0) {
+                                var blockedAnimation = anime({
+                                    targets: p1,
+                                    translateY: () => {
+                                        return -(p1.offsetTop - blockedSection.offsetTop - 10) + 'px'
+                                    },
+                                    translateX: () => {
+                                        return (blockedSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                                    },
+                                    begin: () => {
+                                        logTextString += "log@contingSemaphore:~$ Process 1 is going to blocked section<br>"
+                                        logText.innerHTML = logTextString
+                                    },
+                                    complete: () => {
+                                        if (i == processCount - 1) {
+                                            resumeProcessVisulization()
+                                        }
+                                    },
+                                    duration: 5000,
+                                })
+                                blockedMethods.push(p1)
+                                blockedAnimation.play;
+                            } else {
+                                var criticalAnimation = anime({
+                                    targets: p1,
+                                    translateY: () => {
+                                        return -(p1.offsetTop - criticalSection.offsetTop - 10) + 'px'
+                                    },
+                                    translateX: () => {
+                                        return (criticalSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                                    },
+                                    begin: () => {
+                                        logTextString += "log@contingSemaphore:~$ Process 1 is going to critical section<br>"
+                                        logText.innerHTML = logTextString
+                                    },
+                                    complete: () => {
+                                        if (i == processCount - 1) {
+                                            resumeProcessVisulization()
+                                        }
+                                    },
+                                    duration: 5000,
+                                })
+                                criticalMethods.push(p1)
+                                criticalAnimation.play;
+                            }
+                        }
+                    });
+                } else {
+                    p = document.getElementById("process" + (i + 1));
+                    anime({
+                        targets: p,
+                        translateY: () => {
+                            return -(p1.offsetTop - entrySection.offsetTop - 10) + 'px'
+                        },
+                        translateX: () => {
+                            return (entrySection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                        },
+                        duration: 6000,
+                        delay: i * 5000,
+                        complete: (ani) => {
+                            semaphore -= 1
+                            semaphoreCount.innerHTML = semaphore
+                            logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " executed entry code<br>"
+                            logText.innerHTML = logTextString
+                            if (semaphore < 0) {
+                                var blockedAnimation = anime({
+                                    targets: p,
+                                    translateY: () => {
+                                        return -(p1.offsetTop - blockedSection.offsetTop - 10) + 'px'
+                                    },
+                                    translateX: () => {
+                                        return (blockedSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                                    },
+                                    begin: () => {
+                                        logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " is going to blocked section<br>"
+                                        logText.innerHTML = logTextString
+                                    },
+                                    complete: () => {
+                                        if (i == processCount - 1) {
+                                            resumeProcessVisulization()
+                                        }
+                                    },
+                                    duration: 5000,
+                                })
+                                blockedMethods.push(p)
+                                blockedAnimation.play;
+                            } else {
+                                var criticalAnimation1 = anime({
+                                    targets: p,
+                                    translateY: () => {
+                                        return -(p1.offsetTop - criticalSection.offsetTop - 10) + 'px'
+                                    },
+                                    translateX: () => {
+                                        return (criticalSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                                    },
+                                    begin: () => {
+                                        logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " is going to critical section<br>"
+                                        logText.innerHTML = logTextString
+                                    },
+                                    complete: () => {
+                                        if (i == processCount - 1) {
+                                            resumeProcessVisulization()
+                                        }
+                                    },
+                                    duration: 5000,
+                                })
+                                criticalMethods.push(p)
+                                criticalAnimation1.play;
+                            }
+                        }
+                    });
+                }
+            }
         }
+        function resumeProcessVisulization(e) {
+            for (let i = 0; i < criticalMethods.length; i++) {
+                let p = criticalMethods[i]
+                anime({
+                    targets: p,
+                    translateY: () => {
+                        return (exitSection.offsetTop - p1.offsetTop + 40) + 'px'
+                    },
+                    translateX: () => {
+                        return (exitSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                    },
+                    duration: 5000,
+                    begin: () => {
+                        let temp = "" + p.id
+                        logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
+                        logText.innerHTML = logTextString
+                    },
+                    complete: () => {
+                        let temp = "" + p.id
+                        logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
+                        logText.innerHTML = logTextString
+                        anime({
+                            targets: p,
+                            translateY: () => {
+                                return (completeSection.offsetTop - p1.offsetTop + 40) + 'px'
+                            },
+                            translateX: () => {
+                                return (completeSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                            },
+
+                            complete: () => {
+                                let temp = "" + p.id
+                                logTextString += "log@contingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
+                                logText.innerHTML = logTextString
+                            },
+                            duration: 5000,
+                        })
+
+                        semaphore += 1
+                        semaphoreCount.innerHTML = semaphore
+                        if (semaphore <= 0) {
+                            blockedMethodsExecutes()
+                        }
+                    }
+                })
+            }
+        }
+
+        function blockedMethodsExecutes() {
+            let p = blockedMethods[0];
+            blockedMethods.shift()
+
+            anime({
+                targets: p,
+                translateY: () => {
+                    return -(p1.offsetTop - criticalSection.offsetTop - 10) + 'px'
+                },
+                translateX: () => {
+                    return (criticalSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                },
+                duration: 6000,
+                begin: () => {
+                    let temp = "" + p.id
+                    logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is waked-up and going to critical section<br>"
+                    logText.innerHTML = logTextString
+                },
+                complete: () => {
+                    anime({
+                        targets: p,
+                        translateY: () => {
+                            return (exitSection.offsetTop - p1.offsetTop + 40) + 'px'
+                        },
+                        translateX: () => {
+                            return (exitSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                        },
+                        duration: 5000,
+                        begin: () => {
+                            let temp = "" + p.id
+                            logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
+                            logText.innerHTML = logTextString
+                        },
+                        complete: () => {
+
+                            let temp = "" + p.id
+                            logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
+                            logText.innerHTML = logTextString
+                            anime({
+                                targets: p,
+                                translateY: () => {
+                                    return (completeSection.offsetTop - p1.offsetTop + 40) + 'px'
+                                },
+                                translateX: () => {
+                                    return (completeSection.offsetLeft - p1.offsetLeft + 10) + 'px'
+                                },
+                                complete: () => {
+                                    let temp = "" + p.id
+                                    logTextString += "log@contingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
+                                    logText.innerHTML = logTextString
+                                },
+                                duration: 5000,
+                            })
+
+                            semaphore += 1
+                            semaphoreCount.innerHTML = semaphore
+                            if (semaphore <= 0) {
+                                blockedMethodsExecutes()
+                            }
+                        }
+                    })
+                },
+                // delay: blockedMethods.length - (blockedMethods.length - 2) * 5000,
+            })
+        }
+
     </script>
 </body>
 
