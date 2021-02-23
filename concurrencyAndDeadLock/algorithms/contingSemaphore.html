@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
-
 <body>
-    <div class="container-fluild p-0">
+    <!-- <div class="container-fluild p-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -40,9 +38,10 @@
                 </ul>
             </div>
         </nav>
-    </div>
-    <header class="headerView text-center">
-        <p class="text-light heading-text">Counting Semaphore</p>
+    </div> -->
+    <header class="headerView">
+        <a href="../algorithm.html" class="text-light ps-3" style="background-color: rgb(63, 53, 199);"> <- &nbsp GO TO ALGORITHMS</a>
+        <p class="text-light heading-text text-center">Counting Semaphore</p>
     </header>
     <section>
         <div class="container-fluid pt-3">
@@ -72,11 +71,11 @@
                             <button class="btn btn-danger">Stop</button>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <div class="input-group">
                             <a href="../index.html" class="btn btn-secondary">Home</a>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -112,14 +111,14 @@
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <p class="text-light mt-3 mb-0" id="exitSection">EXIT CODE</p>
-                        <div class="fist-section">
+                        <p class="text-light mt-3 mb-0">EXIT CODE</p>
+                        <div class="fist-section" id="exitSection">
 
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <p class="text-light mt-3 mb-0" id="completeSection">COMPLETED</p>
-                        <div class="fist-section">
+                        <p class="text-light mt-3 mb-0">COMPLETED</p>
+                        <div class="fist-section" id="completeSection">
 
                         </div>
                     </div>
@@ -342,7 +341,7 @@
                 anime({
                     targets: p,
                     translateY: () => {
-                        return (exitSection.offsetTop - p1.offsetTop + 40) + 'px'
+                        return (exitSection.offsetTop - p1.offsetTop + 10) + 'px'
                     },
                     translateX: () => {
                         return (exitSection.offsetLeft - p1.offsetLeft + 10) + 'px'
@@ -360,7 +359,7 @@
                         anime({
                             targets: p,
                             translateY: () => {
-                                return (completeSection.offsetTop - p1.offsetTop + 40) + 'px'
+                                return (completeSection.offsetTop - p1.offsetTop + 10) + 'px'
                             },
                             translateX: () => {
                                 return (completeSection.offsetLeft - p1.offsetLeft + 10) + 'px'
@@ -406,7 +405,7 @@
                     anime({
                         targets: p,
                         translateY: () => {
-                            return (exitSection.offsetTop - p1.offsetTop + 40) + 'px'
+                            return (exitSection.offsetTop - p1.offsetTop + 10) + 'px'
                         },
                         translateX: () => {
                             return (exitSection.offsetLeft - p1.offsetLeft + 10) + 'px'
@@ -425,7 +424,7 @@
                             anime({
                                 targets: p,
                                 translateY: () => {
-                                    return (completeSection.offsetTop - p1.offsetTop + 40) + 'px'
+                                    return (completeSection.offsetTop - p1.offsetTop + 10) + 'px'
                                 },
                                 translateX: () => {
                                     return (completeSection.offsetLeft - p1.offsetLeft + 10) + 'px'
