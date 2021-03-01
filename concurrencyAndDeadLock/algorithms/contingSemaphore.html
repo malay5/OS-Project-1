@@ -24,7 +24,7 @@
                         <a class="nav-link" href="../algorithms/binarySemaphore.html">Binary Semaphore</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../algorithms/contingSemaphore.html">Counting Semaphore</a>
+                        <a class="nav-link" href="../algorithms/countingSemaphore.html">Counting Semaphore</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Producer-Consumer</a>
@@ -40,7 +40,7 @@
         </nav>
     </div> -->
     <header class="headerView">
-        <a href="../algorithm.html" class="text-light ps-3" style="background-color: rgb(63, 53, 199);"> <- &nbsp GO TO ALGORITHMS</a>
+        <a href="../index.html" class="text-light ps-3" style="background-color: rgb(63, 53, 199);"> <- &nbsp GO TO ALGORITHMS</a>
         <p class="text-light heading-text text-center">Counting Semaphore</p>
     </header>
     <section>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-12">
                         <div class="input-group">
-                            <button class="btn btn-success">Ready For Megic</button>
+                            <button class="btn btn-success">Ready For Magic</button>
                         </div>
                     </div>
                     <div class="col-12">
@@ -171,7 +171,7 @@
             semaphoreCount.innerHTML = semaphore
 
             logText = document.getElementById("logText")
-            logTextString = "log@contingSemaphore:~$"
+            logTextString = "log@countingSemaphore:~$"
 
             window.setInterval(function () {
                 var elem = document.getElementById("mainLogDiv");
@@ -219,7 +219,7 @@
                             semaphore -= 1
                             semaphoreCount.innerHTML = semaphore;
 
-                            logTextString += "log@contingSemaphore:~$ Process 1 executed entry code<br>"
+                            logTextString += "log@countingSemaphore:~$ Process 1 executed entry code<br>"
                             logText.innerHTML = logTextString
                             if (semaphore < 0) {
                                 var blockedAnimation = anime({
@@ -231,7 +231,7 @@
                                         return (blockedSection.offsetLeft - p1.offsetLeft + 10) + 'px'
                                     },
                                     begin: () => {
-                                        logTextString += "log@contingSemaphore:~$ Process 1 is going to blocked section<br>"
+                                        logTextString += "log@countingSemaphore:~$ Process 1 is going to blocked section<br>"
                                         logText.innerHTML = logTextString
                                     },
                                     complete: () => {
@@ -253,7 +253,7 @@
                                         return (criticalSection.offsetLeft - p1.offsetLeft + 10) + 'px'
                                     },
                                     begin: () => {
-                                        logTextString += "log@contingSemaphore:~$ Process 1 is going to critical section<br>"
+                                        logTextString += "log@countingSemaphore:~$ Process 1 is going to critical section<br>"
                                         logText.innerHTML = logTextString
                                     },
                                     complete: () => {
@@ -283,7 +283,7 @@
                         complete: (ani) => {
                             semaphore -= 1
                             semaphoreCount.innerHTML = semaphore
-                            logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " executed entry code<br>"
+                            logTextString += "log@countingSemaphore:~$ Process " + (i + 1) + " executed entry code<br>"
                             logText.innerHTML = logTextString
                             if (semaphore < 0) {
                                 var blockedAnimation = anime({
@@ -295,7 +295,7 @@
                                         return (blockedSection.offsetLeft - p1.offsetLeft + 10) + 'px'
                                     },
                                     begin: () => {
-                                        logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " is going to blocked section<br>"
+                                        logTextString += "log@countingSemaphore:~$ Process " + (i + 1) + " is going to blocked section<br>"
                                         logText.innerHTML = logTextString
                                     },
                                     complete: () => {
@@ -317,7 +317,7 @@
                                         return (criticalSection.offsetLeft - p1.offsetLeft + 10) + 'px'
                                     },
                                     begin: () => {
-                                        logTextString += "log@contingSemaphore:~$ Process " + (i + 1) + " is going to critical section<br>"
+                                        logTextString += "log@countingSemaphore:~$ Process " + (i + 1) + " is going to critical section<br>"
                                         logText.innerHTML = logTextString
                                     },
                                     complete: () => {
@@ -349,12 +349,12 @@
                     duration: 5000,
                     begin: () => {
                         let temp = "" + p.id
-                        logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
+                        logTextString += "log@countingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
                         logText.innerHTML = logTextString
                     },
                     complete: () => {
                         let temp = "" + p.id
-                        logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
+                        logTextString += "log@countingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
                         logText.innerHTML = logTextString
                         anime({
                             targets: p,
@@ -367,7 +367,7 @@
 
                             complete: () => {
                                 let temp = "" + p.id
-                                logTextString += "log@contingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
+                                logTextString += "log@countingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
                                 logText.innerHTML = logTextString
                             },
                             duration: 5000,
@@ -398,7 +398,7 @@
                 duration: 6000,
                 begin: () => {
                     let temp = "" + p.id
-                    logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is waked-up and going to critical section<br>"
+                    logTextString += "log@countingSemaphore:~$ Process " + temp.slice(-1) + " is waked-up and going to critical section<br>"
                     logText.innerHTML = logTextString
                 },
                 complete: () => {
@@ -413,13 +413,13 @@
                         duration: 5000,
                         begin: () => {
                             let temp = "" + p.id
-                            logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
+                            logTextString += "log@countingSemaphore:~$ Process " + temp.slice(-1) + " is going to exit code section<br>"
                             logText.innerHTML = logTextString
                         },
                         complete: () => {
 
                             let temp = "" + p.id
-                            logTextString += "log@contingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
+                            logTextString += "log@countingSemaphore:~$ Process " + temp.slice(-1) + " executed exit code<br>"
                             logText.innerHTML = logTextString
                             anime({
                                 targets: p,
@@ -431,7 +431,7 @@
                                 },
                                 complete: () => {
                                     let temp = "" + p.id
-                                    logTextString += "log@contingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
+                                    logTextString += "log@countingSemaphore:~$ YAY, Process " + temp.slice(-1) + " completed their job!<br>"
                                     logText.innerHTML = logTextString
                                 },
                                 duration: 5000,
