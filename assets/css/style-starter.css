@@ -10210,7 +10210,7 @@ nav ul li a:hover {
   position: relative; }
 
 .w3l-main-slider .banner-view {
-  background: url(../images/disk1.jpg) no-repeat center;
+  background: url(https://prod-discovery.edx-cdn.org/media/programs/card_images/e0de6882-c5d1-43f3-99e0-17e386489dca-9c3bda2df48f.jpg) no-repeat center;
   background-size: cover;
   min-height: calc(100vh - 40px);
   position: relative;
@@ -10220,11 +10220,13 @@ nav ul li a:hover {
   padding: 3em 0; }
 
 .w3l-main-slider .banner-top1 {
-  background: url(../images/disk2.jpg) no-repeat center;
+  background: url(https://www.iisecurity.in/images/slider/FlyingStart.png ) no-repeat center;
+  
+
   background-size: cover; }
 
 .w3l-main-slider .banner-top2 {
-  background: url(../images/disk3.jpg) no-repeat center;
+  background: url(https://www.iisecurity.in/images/courses/operating-system-security.jpg) no-repeat center;
   background-size: cover; }
 
 .w3l-main-slider .banner-view:before {
@@ -10609,7 +10611,7 @@ a.title-head {
   color: #fff; }
 
 .w3l-bg-image {
-  background: url(../images/bannerfooter.jpg) no-repeat center;
+  background: url(../images/unnamed.jpg) no-repeat center;
   background-size: cover; }
 
 .bg-mask {
@@ -11051,3 +11053,7 @@ label.form-field {
 @media (max-width: 400px) {
   .contact-map .cont-details {
     padding: 2em 2em; } }
+
+.banner-info-bg1{
+  
+}

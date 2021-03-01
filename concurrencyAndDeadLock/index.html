@@ -1,17 +1,490 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../concurrencyAndDeadLock/algorithms/css/style.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <title>Concurrency & Deadlock</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>DISK SCHEDULING ALGORITHM</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../assets/css/style-starter.css">
 </head>
+
 <body>
-    <h1><a href="../concurrencyAndDeadLock/algorithms/contingSemaphore.html">Counting Semaphore</a></h1>
-    <h1><a href="../concurrencyAndDeadLock/algorithms/binarySemaphore.html">Binary Semaphore</a></h1>
-    <h1><a href="../concurrencyAndDeadLock/algorithms/mutex.html">Mutual Exclusion</a></h1>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="index.html">
+                    <span class="fa fa-hdd-o"></span> OS Virtual Lab
+                </a>
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="algo.html">Algorithms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container py-1">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- main-slider -->
+    <section class="w3l-main-slider" id="home">
+        <div class="companies20-content">
+            <div class="owl-one owl-carousel owl-theme">
+                <div class="item">
+                    <li>
+                        <div class="slider-info banner-view bg bg2">
+                            <div class="banner-info">
+                                <div class="container">
+                                    <div class="banner-info-bg">
+                                        <h5>OS</h5>
+                                        <h6><span>Concurrency and Deadlock</span></h6>
+                                        <p class="mt-4"> Explanations coming here soon!!!
+                                            Explaing algorithm here soon... </p>
+                                        <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo1.html">RUN
+                                            ALGO</a>
+                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+                <div class="item">
+                    <li>
+                        <div class="slider-info  banner-view banner-top1 bg bg2">
+                            <div class="banner-info">
+                                <div class="container">
+                                    <div class="banner-info-bg banner-info-bg1">
+                                        <h5>Concurrency</h5>
+                                        <h6><span>Execution of the multiple instruction sequences at the same
+                                                time.</span></h6>
+                                        <p class="mt-4">For more information, See below!</p>
+                                        <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo.html">RUN
+                                            ALGO</a>
+                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+                <div class="item">
+                    <li>
+                        <div class="slider-info banner-view banner-top2 bg bg2">
+                            <div class="banner-info">
+                                <div class="container">
+                                    <div class="banner-info-bg">
+                                        <h5>DeadLock</h5>
+                                        <h6>A state in which each member of a group waits for another member</h6>
+                                        <p class="mt-4">For more information, See below!</p>
+                                        <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo.html">RUN
+                                            ALGO</a>
+                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /main-slider -->
+
+    <section class="w3l-index3" id="bottom">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 about-right-faq align-self">
+                        <!--<h5 class="title-small mb-3">need to be resolved:DSA</h5>
+                    <h3 class="title-big">Summary</h3>-->
+                        <p class="mt-4">
+                        <p style="color:red;font-size:35px;margin-top:-50px;">Concurrency</p><br>Concurrency is the
+                        execution of the multiple instruction sequences at the same time. It happens in the operating
+                        system when there are several process threads running in parallel. The running process threads
+                        always communicate with each other through shared memory or message passing. Concurrency results
+                        in sharing of resources result in problems like deadlocks and resources starvation.
+                        <hr>
+                        <p style="color:red;font-size:35px;margin-top:10px;">Deadlock</p><br>It helps in techniques like
+                        coordinating execution of processes, memory allocation and execution scheduling for maximizing
+                        throughput.<br>Deadlock is a situation where a set of processes are blocked because each process
+                        is holding a resource and waiting for another resource acquired by some other process. </p>
+                        <a href="algo.html" class="btn btn-style border-btn mt-lg-5 mt-4">RUN ALGORITHMS!</a>
+                    </div>
+                    <div class="col-lg-6 left-wthree-img text-right mt-lg-0 mt-5 ">
+                        <img src="../assets/gif/Deadlock.gif" alt="" class="radius-image img-fluid" width="70%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- /homeblock2-->
+    <!--
+<section class="w3l-homeblock2 py-5" id="services">
+    <div class="container py-lg-5 py-md-4">
+        <div class="grids-area-hny main-cont-wthree-fea row">
+            <div class="col-lg-2 col-sm-6 grids-feature">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/seek.png" height="30px" width="30px"></span>
+                    <h4>Seek Time</h4>
+                    <p>Seek time is the time taken to locate the disk arm to a specified track where the data is to be read or write.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 grids-feature mt-sm-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/rotation.png" height="30px" width="30px"></span>
+                    <h4>Rotational Latency</h4>
+                    <p>Rotational Latency is the time taken by the desired sector of disk to rotate into a position so that it can access the read/write heads.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/transfer.png" height="30px" width="30px"></span>
+                    <h4>Transfer Time</h4>
+                    <p>Transfer time is the time to transfer the data. It depends on the rotating speed of the disk and number of bytes to be transferred.</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/disk.png" height="30px" width="30px"></span>
+                    <h4>Disk Access Time</h4>
+                    <p>Disk Access Time = Seek Time + Rotational Latency + Transfer Time</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-12 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/floppy.png" height="30px" width="30px"></span>
+                    <h4>Disk Response Time</h4>
+                    <p>Response Time is the average of time spent by a request waiting to perform its I/O operation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+    <!-- //homeblock2-->
+    <!--
+<section class="w3l-homeblock2 py-5" id="services">
+    <div class="container py-lg-5 py-md-4">
+        <div class="grids-area-hny main-cont-wthree-fea row">
+            <div class="col-lg-2 col-sm-6 grids-feature">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/seek.png" height="30px" width="30px"></span>
+                    <h4>Seek Time</h4>
+                    <p>Seek time is the time taken to locate the disk arm to a specified track where the data is to be read or write.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 grids-feature mt-sm-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/rotation.png" height="30px" width="30px"></span>
+                    <h4>Rotational Latency</h4>
+                    <p>Rotational Latency is the time taken by the desired sector of disk to rotate into a position so that it can access the read/write heads.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/transfer.png" height="30px" width="30px"></span>
+                    <h4>Transfer Time</h4>
+                    <p>Transfer time is the time to transfer the data. It depends on the rotating speed of the disk and number of bytes to be transferred.</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/disk.png" height="30px" width="30px"></span>
+                    <h4>Disk Access Time</h4>
+                    <p>Disk Access Time = Seek Time + Rotational Latency + Transfer Time</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-12 grids-feature mt-lg-0 mt-5">
+                <div class="area-box">
+                    <span class="fa"><img src="../assets/images/floppy.png" height="30px" width="30px"></span>
+                    <h4>Disk Response Time</h4>
+                    <p>Response Time is the average of time spent by a request waiting to perform its I/O operation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+    <section class="w3l-homeblock3">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <img src="../assets/images/Banner-Blog-1A-1.jpg" alt="" class="radius-image img-fluid">
+                    </div>
+                    <div class="col-lg-6 mt-lg-0 mt-3 about-right-faq align-self">
+                        <h3 class="title-big">Banker’s Algorithm</h3>
+                        <p class="mt-3">The banker’s algorithm is a resource allocation and deadlock avoidance algorithm
+                            that tests for safety by simulating the allocation for predetermined maximum possible
+                            amounts of all resources, then makes an “s-state” check to test for possible activities,
+                            before deciding whether allocation should be allowed to continue.</p>
+                        <ul class="w3l-lists mt-4">
+
+                            <h3 class="title-small"> Advantages: </h3>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>It contains various resources that
+                                meet the requirements of each process.</li>
+
+                            <li><span class="fa fa-check" aria-hidden="true"></span>It helps the operating system manage
+                                and control process requests for each type of resource in the computer system.</li>
+
+                            </li>
+                            <h3 class="title-small"> Disadvantages: </h3>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>It requires a fixed number of
+                                processes, and no additional processes can be started in the system while executing the
+                                process.</li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>The number of resource requests can
+                                be granted in a finite time, but the time limit for allocating the resources is one
+                                year.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w3l-homeblock3">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 mt-lg-0 mt-3 about-right-faq align-self">
+                        <h3 class="title-big">Peterson's algorithm</h3>
+                        <p class="mt-3">Peterson's algorithm (or Peterson's solution) is a concurrent programming
+                            algorithm for mutual exclusion that allows two or more processes to share a single-use
+                            resource without conflict, using only shared memory for communication.</p>
+                        <ul class="w3l-lists mt-4">
+
+                            <h3 class="title-small"> Advantages: </h3>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>Provides a good algorithmic
+                                description of solving the critical-section problem and illustrates some of the
+                                complexities involved in designing software that addresses the requirements of mutual
+                                exclusion, progress, and bounded waiting. </li>
+                            <li><span class="fa fa-check" aria-hidden="true"></span> Mutual exclusion is preserved.</li>
+
+                            <h3 class="title-small"> DisAdvantages: </h3>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>Peterson’s solution works for two
+                                processes, but this solution is best scheme in user mode for critical section.</li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>This solution is also a busy waiting
+                                solution so CPU time is wasted. So that “SPIN LOCK” problem can come. And this problem
+                                can come in any of the busy waiting solution.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <img src="../assets/images/marketer-algorithm-content-2018.png" alt=""
+                            class="radius-image img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w3l-homeblock3">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <img src="../assets/images/120319_0858_WhatisSemap2.png" alt="" class="radius-image img-fluid">
+                    </div>
+                    <div class="col-lg-6 mt-lg-0 mt-3 about-right-faq align-self">
+                        <h3 class="title-big">Semaphore’s Algorithm</h3>
+                        <p class="mt-3">Semaphore is defined as a variable that is non-negative and shared between
+                            threads. It is a mechanism that can be used to provide synchronization of tasks. Counting
+                            semaphore uses a count that helps task to be acquired or released numerous times.</p>
+                        <ul class="w3l-lists mt-4">
+
+                            <h3 class="title-small"> Advantages: </h3>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>There is no resource wastage because
+                                of busy waiting in semaphores as processor time is not wasted unnecessarily to check if
+                                a condition is fulfilled to allow a process to access the critical section.</li>
+
+
+
+                            </li>
+                            <h3 class="title-small"> Disadvantages: </h3>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>Semaphores are complicated so the
+                                wait and signal operations must be implemented in the correct order to prevent
+                                deadlocks.</li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>Semaphores are impractical for last
+                                scale use as their use leads to loss of modularity. This happens because the wait and
+                                signal operations prevent the creation of a structured layout for the system.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+<section class="w3l-homeblock2 py-5" id="services">
+    <div class="container py-lg-5 py-md-4">
+        <div class="grids-area-hny main-cont-wthree-fea row">
+            <div class="col-lg-6 col-sm-6 grids-feature">
+                <div class="area-box">
+                    <h4><a href="algo.html" class="title-head">SCAN</a></h4>
+                    <p>In SCAN algorithm the disk arm moves into a particular direction and services the requests coming in its path and after reaching the end of disk, it reverses its direction and again services the request arriving in its path. So, this algorithm works as an elevator and hence also known as elevator algorithm. As a result, the requests at the midrange are serviced more and those arriving behind the disk arm will have to wait.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 grids-feature mt-sm-0 mt-5">
+                <div class="area-box">
+                    <h4><a href="algo.html" class="title-head">C-SCAN</a></h4>
+                    <p>In SCAN algorithm, the disk arm again scans the path that has been scanned, after reversing its direction. So, it may be possible that too many requests are waiting at the other end or there may be zero or few requests pending at the scanned area.</p>
+                    <p>These situations are avoided in CSCAN algorithm in which the disk arm instead of reversing its direction goes to the other end of the disk and starts servicing the requests from there. So, the disk arm moves in a circular fashion and this algorithm is also similar to SCAN algorithm and hence it is known as C-SCAN (Circular SCAN).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="w3l-homeblock3 py-5" id="services">
+    <div class="container py-lg-5 py-md-4">
+        <div class="grids-area-hny main-cont-wthree-fea row">
+            <div class="col-lg-6 col-sm-6 grids-feature">
+                <div class="area-box">
+                    <h4><a href="algo.html" class="title-head">LOOK</a></h4>
+                    <p>It is similar to the SCAN disk scheduling algorithm except for the difference that the disk arm in spite of going to the end of the disk goes only to the last request to be serviced in front of the head and then reverses its direction from there only. Thus it prevents the extra delay which occurred due to unnecessary traversal to the end of the disk.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 grids-feature mt-sm-0 mt-5">
+                <div class="area-box">
+                    <h4><a href="algo.html" class="title-head">C-LOOK</a></h4>
+                    <p>As LOOK is similar to SCAN algorithm, in similar way, CLOOK is similar to CSCAN disk scheduling algorithm. In CLOOK, the disk arm in spite of going to the end goes only to the last request to be serviced in front of the head and then from there goes to the other end’s last request. Thus, it also prevents the extra delay which occurred due to unnecessary traversal to the end of the disk.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+    <div class="w3l-bg-image">
+        <div class="bg-mask py-5">
+            <div class="container py-lg-5 py-4">
+                <div class="text-align text-center py-lg-4 py-md-3">
+                    <h3>That's All</h3>
+                    <p>"There is no real ending. It's just the place where you stop the story.</p>
+                    <h2 class="title-small" style="color:rgb(9, 233, 241); background-color:rgba(5,5,5,0.1)"> -Frank
+                        Herbert </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template JavaScript -->
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+
+    <script src="../assets/js/theme-change.js"></script>
+
+    <script src="../assets/js/owl.carousel.js"></script>
+
+    <!-- script for banner slider-->
+    <script>
+        $(document).ready(function () {
+            $('.owl-one').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false,
+                responsiveClass: true,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 1000,
+                autoplayHoverPause: false,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    480: {
+                        items: 1,
+                        nav: false
+                    },
+                    667: {
+                        items: 1,
+                        nav: true
+                    },
+                    1000: {
+                        items: 1,
+                        nav: true
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+
+    <!--/MENU-JS-->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!--//MENU-JS-->
+
 </body>
+
 </html>
