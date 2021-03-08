@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer And Consumer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="headerView">
+        <a href="../algo.html" class="text-light ps-3" style="background-color: rgb(63, 53, 199);">
+            <- &nbsp GO TO ALGORITHMS</a>
+                <p class="text-light heading-text text-center">Producer And Consumer</p>
+    </header>
+
+    <section>
+        <div class="container-fluid pt-3">
+            <div class="d-flex justify-content-center">
+                <form class="row row-cols-lg-auto g-3"
+                    onsubmit="event.preventDefault();startProcessVisualization();return false"
+                    id="formForProducerAndConsumer">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Stack Size" id="stackSize"
+                                name="stackSizeValue">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Producer Count" id="producerCount"
+                                name="producerCountValue">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Consumer Count" id="consumerCount"
+                                name="consumerCountValue">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <button class="btn btn-success">Ready For Magic</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container pt-5">
+            <div class="d-flex justify-content-between">
+                <div id="producer" class="text-center">
+                    <img src="../../assets/images/producer.jpeg" width="200" height="200"
+                        style="border-radius: 50%; display: none; position: relative; top: -40px;" alt="Producer Image"
+                        id="producerImg" />
+                    <p class="text-danger" id="producerName" style="display: none; position: relative; top: -40px;">I Am
+                        Producer</p>
+                    <br>
+                    <div id="cookingContainer" style="display: none; position: relative; top: -80px;">
+                        <img src='../../assets/images/food.gif' alt='Food Img' width='50' height='50'
+                            style='position: absolute;margin-top: 50px; margin-left: 15px; border-radius: 50%;z-index: 1;'
+                            id="cookingFood1">
+                        <img src="../../assets/images/food.gif" alt="Food Img" width="50" height="50"
+                            style="position: absolute;margin-top: 50px; margin-left: 15px; border-radius: 50%;z-index: 1;"
+                            id="cookingFood2">
+                        <img src="../../assets/images/coo.gif" class="mt-3" width="200" height="200"
+                            style="border-radius: 40%;" alt="Producer Image" id="cooking">
+                    </div>
+
+                </div>
+                <div id="stack" style="width: 300px; height: 600px;">
+
+                </div>
+                <div id="consumer" style="width: 50px; height: 50px; background-color: red;">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+        integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+        crossorigin="anonymous"></script>
+    <script>
+        let stackSize, count = 0;
+        function startProcessVisualization() {
+            formData = new FormData(formForProducerAndConsumer)
+            stackSize = formData.get("stackSizeValue");
+
+            let stackDiv = document.getElementById("stack")
+            let child = ""
+            for (let i = 0; i < stackSize; i++) {
+                child += "<div class='border border-primary' style='height: 80px;width: 300px; position: absolute;' id='block" + (i + 1) + "'> <img src='../../assets/images/food.gif' alt='Food Img' width='50' height='50' style='border-radius: 50%; margin-left: 40%; margin-top: 5%; visibility: hidden' id='stackFood" + (i + 1) + "'> </div>"
+            }
+            stackDiv.innerHTML = child;
+            let stackDivMargin = stackDiv.offsetTop;
+            for (let i = 1; i < stackSize; i++) {
+                let pos = stackDivMargin;
+                let element = document.getElementById("block" + (i + 1))
+                let id = setInterval(frame, 20)
+                function frame() {
+                    if (pos == stackDivMargin + (80 * i)) {
+                        clearInterval(id);
+                    } else {
+                        pos++;
+                        element.style.top = pos + "px";
+                    }
+                }
+            }
+            setTimeout(() => {
+                let producerImg = document.getElementById("producerImg")
+                let producerName = document.getElementById("producerName")
+
+                producerImg.style.display = "block"
+                producerName.style.display = "block"
+
+                let producerImgPosition = producerImg.style.top
+                let producerNamePosition = producerName.style.top
+
+                producerImgPosition = producerImgPosition.substring(0, producerImgPosition.length - 2)
+                producerNamePosition = producerNamePosition.substring(0, producerNamePosition.length - 2)
+
+                let id1 = setInterval(frame, 20)
+                function frame() {
+                    if (producerImgPosition == 0) {
+                        clearInterval(id1);
+                    } else {
+                        producerImgPosition++
+                        producerNamePosition++
+                        producerImg.style.top = producerImgPosition + "px"
+                        producerName.style.top = producerNamePosition + "px"
+                    }
+                }
+
+                setTimeout(() => {
+                    let cookingContainer = document.getElementById("cookingContainer")
+                    cookingContainer.style.display = "block"
+
+                    let cookingContainerPosition = cookingContainer.style.top
+                    cookingContainerPosition = cookingContainerPosition.substring(0, cookingContainerPosition.length - 2)
+
+                    let id1 = setInterval(frame, 20)
+                    function frame() {
+                        if (cookingContainerPosition == 0) {
+                            clearInterval(id1);
+                        } else {
+                            cookingContainerPosition++
+                            cookingContainer.style.top = cookingContainerPosition + "px"
+                        }
+                    }
+                    var i = 0;
+                    let stackBlock = document.getElementById("block1")
+                    function myLoop() {
+                        i++;
+                        if (i < 3) {
+                            let cookingFood2 = document.getElementById("cookingFood2")
+                            let stackFood = document.getElementById("stackFood" + (i))
+                            let cooking = document.getElementById("cooking")
+                            anime({
+                                targets: cookingFood2,
+                                translateX: () => {
+                                    console.log(stackFood.id)
+                                    return ((stackFood.offsetLeft + stackDiv.offsetLeft) - cookingFood2.offsetLeft - 70) + 'px'
+                                },
+                                translateY: () => {
+                                    return (-(stackBlock.offsetTop + 45)) + (80 * (i - 1)) + "px"
+                                },
+                                complete: () => {
+                                    cookingFood2.style.transform = 'translateX(0) translateY(0)'
+                                    stackFood.style.visibility = 'visible'
+                                    myLoop()
+                                },
+                                duration: 5000,
+                                delay: 2000
+
+                            })
+                        }
+                    }
+                    myLoop()
+                }, 2000);
+            }, (1300 * stackSize));
+        }
+    </script>
+</body>
+
+</html>
