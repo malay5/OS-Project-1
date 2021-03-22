@@ -16,4 +16,4 @@
 
 ### Full Stack: Kunj & Manav
 
-### Frontend: Devam & Yash
+### Frontend: Devam & Yash & Malay
