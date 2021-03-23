@@ -1,15 +1,7 @@
 var size = 0;
-
-function removeRow() {
-	if (size > -1) {
-		document.getElementById("myTable").deleteRow(size + 1);
-		size--;
-	}
-}
-var width = 165;
 function addRow() {
 	size++;
-	let name = "p" + size;
+	let name = "process" + size;
 	width += 90;
 	document.getElementById("printProcess").style.width = `${width}px`;
 
@@ -27,6 +19,14 @@ function addRow() {
 						<td><input value="" /></td>
 					</tr>`;
 }
+function removeRow() {
+	if (size > -1) {
+		document.getElementById("myTable").deleteRow(size + 1);
+		size--;
+	}
+}
+var width = 165;
+
 
 function submitValue() {
 	// $("section").remove();
@@ -126,7 +126,7 @@ function submitValue() {
 			printProcess.innerHTML += "P" + ans[i] + " ";
 		} else {
 			// addElement("section", "deadlock");
-			printProcess.innerHTML += "deadlock";
+			printProcess.innerHTML += "Deadlock";
 			break;
 		}
 	}
