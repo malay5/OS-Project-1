@@ -9,7 +9,7 @@ function removeRow() {
 var width = 165;
 function addRow() {
 	size++;
-	let name = "p" + size;
+	let name = "process " + size;
 	width += 90;
 	document.getElementById("printProcess").style.width = `${width}px`;
 
@@ -112,8 +112,6 @@ function submitValue() {
 		// Adds an element to the document
 		var p = document.createElement(parentId);
 		var newElement = document.createTextNode(elementTag);
-		//newElement.setAttribute('id', elementId);
-		//newElement.innerHTML = html;
 		p.appendChild(newElement);
 		document.body.appendChild(p);
 	}
@@ -122,11 +120,9 @@ function submitValue() {
 	printProcess.innerHTML = "";
 	for (i = 0; i < n; i++) {
 		if (ans[i] >= 0) {
-			// addElement("section", "P" + ans[i]);
 			printProcess.innerHTML += "P" + ans[i] + " ";
 		} else {
-			// addElement("section", "deadlock");
-			printProcess.innerHTML += "deadlock";
+			printProcess.innerHTML += "Deadlock";
 			break;
 		}
 	}
