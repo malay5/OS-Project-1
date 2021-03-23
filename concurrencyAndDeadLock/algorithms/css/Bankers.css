@@ -13,7 +13,7 @@ input {
   font-size: 1em;
   border: none;
   width: 50%;
-  color: black;
+  color: white;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
   font-weight: 300;
   font-size: 20px;
   line-height: 1.42em;
-  color: black;
+  color: white;
   background-color: rgb(41, 41, 41);
   height: 1500px;
 }
