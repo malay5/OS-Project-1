@@ -74,11 +74,11 @@
                                     <div class="banner-info-bg">
                                         <h5>OS</h5>
                                         <h6><span>Concurrency and Deadlock</span></h6>
-                                        <p class="mt-4"> Explanations coming here soon!!!
-                                            Explaing algorithm here soon... </p>
-                                        <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo1.html">RUN
+                                        <!--p class="mt-4"> Explanations coming here soon!!!
+                                            Explaing algorithm here soon... </p-->
+                                        <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo.html">RUN
                                             ALGO</a>
-                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                        <!--a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a-->
                                     </div>
                                 </div>
                             </div>
@@ -94,10 +94,10 @@
                                         <h5>Concurrency</h5>
                                         <h6><span>Execution of the multiple instruction sequences at the same
                                                 time.</span></h6>
-                                        <p class="mt-4">For more information, See below!</p>
+                                        <!--p class="mt-4">For more information, See below!</p-->
                                         <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo.html">RUN
                                             ALGO</a>
-                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                        <!--a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a-->
                                     </div>
                                 </div>
                             </div>
@@ -112,10 +112,10 @@
                                     <div class="banner-info-bg">
                                         <h5>DeadLock</h5>
                                         <h6>A state in which each member of a group waits for another member</h6>
-                                        <p class="mt-4">For more information, See below!</p>
+                                        <!--p class="mt-4">For more information, See below!</p-->
                                         <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="algo.html">RUN
                                             ALGO</a>
-                                        <a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a>
+                                        <!--a class="btn btn-style btn-white mt-sm-5 mt-4" href="about.html"> About us</a-->
                                     </div>
                                 </div>
                             </div>
@@ -135,13 +135,13 @@
                         <!--<h5 class="title-small mb-3">need to be resolved:DSA</h5>
                     <h3 class="title-big">Summary</h3>-->
                         <p class="mt-4">
-                        <p style="color:red;font-size:35px;margin-top:-50px;">Concurrency</p><br>Concurrency is the
+                        <p style="color:red;font-size:40px;margin-top:-50px;"><b>Concurrency</b></p><br><p style="font-size: 20px;">Concurrency is the
                         execution of the multiple instruction sequences at the same time. It happens in the operating
                         system when there are several process threads running in parallel. The running process threads
                         always communicate with each other through shared memory or message passing. Concurrency results
-                        in sharing of resources result in problems like deadlocks and resources starvation.
+                        in sharing of resources result in problems like deadlocks and resources starvation.</p>
                         <hr>
-                        <p style="color:red;font-size:35px;margin-top:10px;">Deadlock</p><br>It helps in techniques like
+                        <p style="color:red;font-size:40px;margin-top:10px;"><b>Deadlock</b></p><br><p style="font-size: 20px;">It helps in techniques like
                         coordinating execution of processes, memory allocation and execution scheduling for maximizing
                         throughput.<br>Deadlock is a situation where a set of processes are blocked because each process
                         is holding a resource and waiting for another resource acquired by some other process. </p>
@@ -298,7 +298,7 @@
                                 exclusion, progress, and bounded waiting. </li>
                             <li><span class="fa fa-check" aria-hidden="true"></span> Mutual exclusion is preserved.</li>
 
-                            <h3 class="title-small"> DisAdvantages: </h3>
+                            <h3 class="title-small"> Disadvantages: </h3>
                             <li><span class="fa fa-times" aria-hidden="true"></span>Peterson’s solution works for two
                                 processes, but this solution is best scheme in user mode for critical section.</li>
                             <li><span class="fa fa-times" aria-hidden="true"></span>This solution is also a busy waiting
@@ -349,7 +349,64 @@
             </div>
         </div>
     </section>
+    <section class="w3l-homeblock3">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 mt-lg-0 mt-3 about-right-faq align-self">
+                        <h3 class="title-big">MUTEX</h3>
+                        <p class="mt-3">When we start working with parallel or concurrent programming, usually the first thing we come across is the problem when two concurrent (or parallel) executions try to access the same resource (for example a variable). Mutex is one of the simplest solutions to solve this issue. </p>
+                        <ul class="w3l-lists mt-4">
 
+                            <h3 class="title-small"> Advantages: </h3>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>Guranteed synchronization: Since only one thread is in its critical section at any given time, there are no race conditions and data remain consistent.</li>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>  Easy implementation: Mutexes are just simple locks that a thread obtains before entering its critical section, and then releases it.</li>
+
+                            <h3 class="title-small"> Disadvantages: </h3>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>If a thread obtains a lock and goes to sleep, or is preempted, then the other thread may never be able to move forward. This will hold true until the thread handling lock will be scheduled again. It may lead to starvation. </li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>Normal implementation leads to busy-waiting which wastes CPU time.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <img src="../assets/images/mutex.png" alt=""
+                            class="radius-image img-fluid" style="height: 725px;width: 800px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w3l-homeblock3">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-3">
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <img src="../assets/images/mightbe.png" alt="" class="radius-image img-fluid" style="width: 2000px;height: 650px;">
+                    </div>
+                    <div class="col-lg-6 mt-lg-0 mt-3 about-right-faq align-self">
+                        <h3 class="title-big">Producer and Consumer</h3>
+                        <p class="mt-3">The producer consumer problem is a synchronization problem. There is a fixed size buffer and the producer produces items and enters them into the buffer. The consumer removes the items from the buffer and consumes them.</p>
+                        <ul class="w3l-lists mt-4">
+
+                            <h3 class="title-small"> Advantages: </h3>
+                            <li><span class="fa fa-check" aria-hidden="true"></span>There is no resource wastage because
+                                of busy waiting in semaphores as processor time is not wasted unnecessarily to check if
+                                a condition is fulfilled to allow a process to access the critical section.</li>
+
+
+
+                            </li>
+                            <h3 class="title-small"> Limitations: </h3>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>The producer should produce data only when the buffer is not full. If the buffer is full, then the producer shouldn't be allowed to put any data into the buffer.
+                                deadlocks.</li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>The consumer should consume data only when the buffer is not empty. If the buffer is empty, then the consumer shouldn't be allowed to take any data from the buffer.</li>
+                            <li><span class="fa fa-times" aria-hidden="true"></span>The producer and consumer should not access the buffer at the same time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!--
 <section class="w3l-homeblock2 py-5" id="services">
     <div class="container py-lg-5 py-md-4">
@@ -395,9 +452,9 @@
         <div class="bg-mask py-5">
             <div class="container py-lg-5 py-4">
                 <div class="text-align text-center py-lg-4 py-md-3">
-                    <h3>That's All</h3>
-                    <p>"There is no real ending. It's just the place where you stop the story.</p>
-                    <h2 class="title-small" style="color:rgb(9, 233, 241); background-color:rgba(5,5,5,0.1)"> -Frank
+                    <h3 style="color:#f44336;font-size: 80px;"><b>That's All</b></h3>
+                    <p class="title-small" style="color:rgb(9, 233, 241); background-color:rgba(5,5,5,0.6)">There is no real ending. It's just the place where you stop the story."</p>
+                    <h2 class="title-small" style="color:rgb(9, 233, 241); background-color:rgba(5,5,5,0.7)"> -Frank
                         Herbert </h2>
                 </div>
             </div>
@@ -484,7 +541,5 @@
         });
     </script>
     <!--//MENU-JS-->
-
 </body>
-
 </html>
