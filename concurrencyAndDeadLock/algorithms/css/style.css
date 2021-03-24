@@ -229,7 +229,6 @@ body{
 }
 
 .console-design {
-  background-color: /* black */;
   height: 650px;
   width: 100%;
   border-radius: 20px;
@@ -271,7 +270,4 @@ body{
   border-top-left-radius: 20px;
   background-color: gray;
   font-weight: 600;
-}
-.console-log-text {
-  background-color: /* black */;
 }
