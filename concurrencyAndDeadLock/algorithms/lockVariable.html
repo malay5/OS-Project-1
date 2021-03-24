@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lock Variable</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <header class="headerView">
+        <a href="../algo.html" class="text-light ps-3" style="background-color: rgb(63, 53, 199)">
+            <- &nbsp GO TO ALGORITHMS</a>
+                <p class="text-light heading-text text-center">Lock Variable</p>
+    </header>
+    <center>
+        <div class="topcorner" style="width: 350px">
+            <br /><br />
+            <div class="codeSection" id="ent-code">
+                <strong style="font-weight: bold">Entry Section</strong> -> While
+                (Lock != 0);
+            </div>
+            <br /><br />
+            <div class="codeSection" id="crit-code">
+                <strong style="font-weight: bold">Critical Section</strong> -> Lock value:: 
+                1
+            </div>
+            <br /><br />
+            <div class="codeSection" id="exit-code">
+                <strong style="font-weight: bold">Exit Section</strong> -> Lock :: 0
+            </div>
+            <br /><br />
+        </div>
+    </center>
+    <div id="user_inp">
+        <input type="text" name="process" id="p_no" placeholder="Enter the number of processes" />
+        <button class="btn pno btn-sm" id="begin">Start</button>
+    </div>
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="col-xs-4 col-4" id="processes"></div>
+            <div class="col-xs-4 col-4">
+                <div class="ent-section">
+                    <div class="p-4">
+                        Entry Section
+                        <div class="ent-items p-3">
+                            <div id="lockcheck">Test Lock</div>
+                            <div class="btn pno btn-sm px-1" id="TestLock"></div>
+                        </div>
+                        <div class="ent-items p-3">
+                            <div id="lockset">Set Lock</div>
+                            <div class="btn pno btn-sm px-1" id="SetLock"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cs-section">
+                    <div class="p-4">
+                        <div>Critical section</div>
+                        <div class="btn pno btn-sm px-1" id="showCritical"></div>
+                    </div>
+                </div>
+
+                <div class="ext-section">
+                    <div class="p-4">
+                        <div>Exit Section</div>
+
+                        <div class="btn pno btn-sm px-1" id="showExit"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="lockdisplay" class="container mt-4 pt-4">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-3">
+                <div class="lockvariable">
+                    <div class="text-center" style="background-color: rgb(41, 41, 41); border-radius: 15px">
+                        <h6 style="
+                  padding: 10px;
+                  font-family: Ubuntu, sans-serif;
+                  font-size: 20px;
+                ">
+                            Current lock value :: <span id="svalue"></span>
+                        </h6>
+                        <div style="border-bottom: 1px solid"></div>
+                        <div style="padding: 10px">
+                            <p>Process in waiting</p>
+                            <div class="btn pno btn-sm px-1" id="waiting-process"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(
+                "#TestLock, #SetLock, #showCritical, #showExit, #waiting-process"
+            ).css("display", "none");
+            $("#begin").click(function () {
+                let testlock = [];
+                let critical = [];
+                let exit = [];
+                let queue = [];
+                let setlock = [];
+                let lock = 0;
+                let process = "";
+                let p_no = $("#p_no").val();
+                for (let i = 0; i < p_no; i++) {
+                    process +=
+                        '<button class="btn pno btn-md" style="font-size: 23px;" id="process' +
+                        i +
+                        '">Process ' +
+                        i +
+                        "</button><br>";
+                }
+                $("#processes").html(process);
+                $("#waiting-process").text(queue);
+                $("#svalue").text(lock);
+                for (let i = 0; i < p_no; i++) {
+                    $("#process" + i).click(function (e) {
+                        e.preventDefault();
+                        runProcess("Process " + i);
+                    });
+                }
+
+                function runProcess(msg) {
+                    let no = parseInt(msg[8]);
+                    $("#process" + no).hide();
+                    $("#svalue").text(lock);
+                    $("#lockcheck").text("Testing Lock on");
+                    testlock.push(msg);
+                    $("#ent-code").css("color", "black");
+                    $("#TestLock").css("display", "block");
+                    $("#TestLock").text(testlock);
+                    $("#svalue").text(lock);
+
+                    if (lock == 0) {
+                        setTimeout(() => {
+                            $("#lockcheck").text("Test lock");
+                            $("#lockset").text("Applying Lock on");
+                            lock = 1;
+                            $("#svalue").text(lock);
+                            testlock = $.grep(testlock, function (value) {
+                                return value != msg;
+                            });
+                            if (testlock.length == 0) {
+                                $("#TestLock").css("display", "none");
+                            }
+                            $("#TestLock").text(testlock);
+                            setlock.push(msg);
+                            $("#SetLock").text(setlock);
+                            $("#SetLock").css("display", "block");
+                            setTimeout(() => {
+                                $("#lockset").text("Set Lock");
+                                setlock = $.grep(setlock, function (value) {
+                                    return value != msg;
+                                });
+                                if (setlock.length == 0) {
+                                    $("#ent-code").css("color", "#585656");
+                                    $("#SetLock").css("display", "none");
+                                }
+
+                                $("#SetLock").text(setlock);
+                                critical.push(msg);
+                                $("#crit-code").css("color", "black");
+                                $("#showCritical").css("display", "block");
+                                $("#showCritical").text(critical);
+                                setTimeout(() => {
+                                    critical = $.grep(critical, function (value) {
+                                        return value != msg;
+                                    });
+                                    if (critical.length == 0) {
+                                        $("#crit-code").css("color", "#585656");
+                                        $("#showCritical").css("display", "none");
+                                    }
+                                    $("#showCritical").text(critical);
+                                    exit.push(msg);
+                                    $("#exit-code").css("color", "black");
+                                    $("#showExit").css("display", "block");
+                                    $("#showExit").text(exit);
+                                    setTimeout(() => {
+                                        exit = $.grep(exit, function (value) {
+                                            return value != msg;
+                                        });
+                                        if (exit.length == 0) {
+                                            $("#exit-code").css("color", "#585656");
+                                            $("#showExit").css("display", "none");
+                                        }
+                                        $("#showExit").text(exit);
+                                        lock = 0;
+                                        $("#svalue").text(lock);
+                                        if (queue.length != 0) {
+                                            let new_process = queue.shift();
+                                            $("#waiting-process").text(queue);
+                                            runProcess(new_process);
+                                        } else {
+                                            $("#waiting-process").css("display", "none");
+                                        }
+                                    }, 3000);
+                                }, 3000);
+                            }, 1500);
+                        }, 1500);
+                    } else {
+                        setTimeout(() => {
+                            $("#lockcheck").text("Test Lock");
+                            testlock = $.grep(testlock, function (value) {
+                                return value != msg;
+                            });
+                            if (testlock.length == 0) {
+                                $("#TestLock").css("display", "none");
+                            }
+                            $("#TestLock").text(testlock);
+                            queue.push(msg);
+                            $("#waiting-process").css("display", "block");
+                            $("#waiting-process").text(queue);
+                        }, 1500);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
